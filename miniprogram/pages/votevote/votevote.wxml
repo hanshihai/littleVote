@@ -1,0 +1,31 @@
+<!--miniprogram/pages/votevote/votevote.wxml-->
+<view class="page">
+<block wx:if="{{topicCount}}">
+  <view class="section">
+    {{topic.title}} -- {{topic.desc}}
+  </view>
+  <form bindsubmit='formSubmit'>
+    <view class="section-button">
+      <radio-group class="radio-group" bindchange="radioChange">
+      <label class="radio" wx:if="{{topic.optiona}}">
+        <radio value="{{topic.optiona}}"/>{{topic.optiona}}
+      </label>
+      <label class="radio" wx:if="{{topic.optionb}}">
+        <radio value="{{topic.optionb}}"/>{{topic.optionb}}
+      </label>
+      <label class="radio" wx:if="{{topic.optionc}}">
+        <radio value="{{topic.optionc}}"/>{{topic.optionc}}
+      </label>
+    </radio-group>
+    </view>
+    <view class="section-button">
+        <button form-type="submit">提交</button>
+      </view>
+  </form>
+</block>
+<block wx:else>
+  <view class="section" >
+      <view class="section-text">当前没有可投票主题</view>
+    </view>
+</block>
+</view>

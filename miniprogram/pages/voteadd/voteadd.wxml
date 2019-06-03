@@ -1,0 +1,29 @@
+<!--miniprogram/pages/voteadd/voteadd.wxml-->
+<view class="page">
+  <form bindsubmit='formSubmit' bindreset='formReset'>
+    <view class="section">
+      <view class="section-text">标题</view>
+      <input name="title" placeholder='请输入标题'></input>
+    </view>
+    <view class="section">
+    <view class="section-text">描述</view>
+      <input name="desc" placeholder='请输入简单描述'></input>
+    </view>
+    <view class="section">
+    <view class="section-text">选项</view>
+      <input name="optiona" placeholder='请输入可选项'></input>
+    </view>
+    <view class="section">
+    <view class="section-text">选项</view>
+      <input name="optionb" placeholder='请输入可选项'></input>
+    </view>
+    <view class="section">
+    <view class="section-text">选项</view>
+      <input name="optionc" placeholder='请输入可选项'></input>
+    </view>
+    <view class="section-button">
+        <button form-type="submit">提交</button>
+        <button form-type="reset">重置</button>
+      </view>
+  </form>
+</view>
