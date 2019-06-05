@@ -5,7 +5,7 @@
     {{topic.title}} -- {{topic.desc}}
   </view>
   <form bindsubmit='formSubmit'>
-    <view class="section-button">
+    <view class="section">
       <radio-group class="radio-group" bindchange="radioChange">
       <label class="radio" wx:if="{{topic.optiona}}">
         <radio value="{{topic.optiona}}"/>{{topic.optiona}}
@@ -22,6 +22,10 @@
         <button form-type="submit">提交</button>
       </view>
   </form>
+
+  <view class="container">
+    <canvas canvas-id="pieCanvas" class="canvas" style="height:300px" bindtouchstart="touchHandler"></canvas>
+</view>
 </block>
 <block wx:else>
   <view class="section" >

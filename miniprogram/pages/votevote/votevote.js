@@ -2,6 +2,9 @@
 
 const app = getApp()
 
+var wxCharts = require("./../../util/wxcharts.js")
+var pieChart = null
+
 Page({
 
   /**
@@ -11,8 +14,12 @@ Page({
       topic: {},
       topicCount: 0,
       vote: [],
-      statistics: []
+      totals: []
   },
+
+  touchHandler: function (e) {
+    console.log(pieChart.getCurrentDataIndex(e));
+  }, 
 
   radioChange: function(e) {
     app.globalData.currentOption = e.detail.value
@@ -22,6 +29,9 @@ Page({
    */
   onLoad: function (options) {
     const indexId = app.globalData.currentTopic
+
+    var windowWidth = 320;
+
     if(indexId) {
       const db = wx.cloud.database()
       db.collection('topic').where({
@@ -47,10 +57,24 @@ Page({
         topic: indexId
       }).get({
         success: res => {
+          const ts = app.getStats(res.data)
           this.setData({
-            vote: res.data
+            vote: res.data,
+            totals: ts
           })
           console.log('vote: ', res)
+          console.log('vote stats: ', ts)
+
+          pieChart = new wxCharts({
+            animation: true,
+            canvasId: 'pieCanvas',
+            type: 'pie',
+            series: ts,
+            width: windowWidth,
+            height: 300,
+            dataLabel: true,
+          });
+
         },
         fail: err => {
           wx.showToast({
@@ -59,6 +83,8 @@ Page({
           console.error('vote：', err)
         }
       })
+
+      
     }
   },
 

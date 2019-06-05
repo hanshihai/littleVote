@@ -2,7 +2,7 @@
 <view class="page">
   <block wx:if="{{topics.length}}">
     <view class="section" wx:for="{{topics}}" wx:key="{{index}}" bindtap="voteTopic"  data-index="{{item._id}}">
-      <view class="section-text">{{item.title}} -- {{item.desc}}</view>
+      <view class="section-text">{{item.title}} : {{item.desc}}</view>
     </view>
   </block>
   <block wx:else>

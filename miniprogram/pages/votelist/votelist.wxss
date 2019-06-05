@@ -40,4 +40,5 @@ page {
   margin-right: 20rpx;
   line-height: 52px;
   font-size: 34rpx;
+  color: cornflowerblue;
 }
