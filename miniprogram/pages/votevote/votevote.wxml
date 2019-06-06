@@ -1,31 +1,27 @@
 <!--miniprogram/pages/votevote/votevote.wxml-->
 <view class="page">
 <block wx:if="{{topicCount}}">
-  <view class="section">
-    {{topic.title}} -- {{topic.desc}}
-  </view>
-  <form bindsubmit='formSubmit'>
     <view class="section">
-      <radio-group class="radio-group" bindchange="radioChange">
-      <label class="radio" wx:if="{{topic.optiona}}">
-        <radio value="{{topic.optiona}}"/>{{topic.optiona}}
-      </label>
-      <label class="radio" wx:if="{{topic.optionb}}">
-        <radio value="{{topic.optionb}}"/>{{topic.optionb}}
-      </label>
-      <label class="radio" wx:if="{{topic.optionc}}">
-        <radio value="{{topic.optionc}}"/>{{topic.optionc}}
-      </label>
-    </radio-group>
+      <view class="section-text">{{topic.title}} -- {{topic.desc}}</view>
     </view>
-    <view class="section-button">
-        <button form-type="submit">提交</button>
-      </view>
-  </form>
-
-  <view class="container">
-    <canvas canvas-id="pieCanvas" class="canvas" style="height:300px" bindtouchstart="touchHandler"></canvas>
-</view>
+        <view class="section">
+          <view class="section-radio">
+          <radio-group class="radio-group" bindchange="radioChange">
+            <label class="radio" wx:if="{{topic.optiona}}">
+              <radio value="{{topic.optiona}}"/>{{topic.optiona}}
+            </label>
+            <label class="radio" wx:if="{{topic.optionb}}">
+              <radio value="{{topic.optionb}}"/>{{topic.optionb}}
+            </label>
+            <label class="radio" wx:if="{{topic.optionc}}">
+              <radio value="{{topic.optionc}}"/>{{topic.optionc}}
+            </label>
+        </radio-group>
+        </view>
+        </view>
+    <view class="container" wx:if="{{voteCount}}">
+      <canvas canvas-id="pieCanvas" class="canvas" style="height:300px" bindtouchstart="touchHandler"></canvas>
+    </view>
 </block>
 <block wx:else>
   <view class="section" >

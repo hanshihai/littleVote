@@ -14,16 +14,14 @@ Page({
       topic: {},
       topicCount: 0,
       vote: [],
-      totals: []
+      totals: [],
+      voteCount: 0
   },
 
   touchHandler: function (e) {
     console.log(pieChart.getCurrentDataIndex(e));
   }, 
 
-  radioChange: function(e) {
-    app.globalData.currentOption = e.detail.value
-  },
   /**
    * Lifecycle function--Called when page load
    */
@@ -60,20 +58,23 @@ Page({
           const ts = app.getStats(res.data)
           this.setData({
             vote: res.data,
-            totals: ts
+            totals: ts,
+            voteCount: ts.length
           })
           console.log('vote: ', res)
           console.log('vote stats: ', ts)
 
-          pieChart = new wxCharts({
-            animation: true,
-            canvasId: 'pieCanvas',
-            type: 'pie',
-            series: ts,
-            width: windowWidth,
-            height: 300,
-            dataLabel: true,
-          });
+          if(ts.length > 0) {
+            pieChart = new wxCharts({
+              animation: true,
+              canvasId: 'pieCanvas',
+              type: 'pie',
+              series: ts,
+              width: windowWidth,
+              height: 300,
+              dataLabel: true,
+            });
+          }
 
         },
         fail: err => {
@@ -82,14 +83,13 @@ Page({
           })
           console.error('vote：', err)
         }
-      })
-
-      
+      })      
     }
   },
 
-  formSubmit: function (e) {
-    const optionValue = app.globalData.currentOption
+  radioChange: function (e) {
+    console.log("submit value: ", e.detail.value);
+    const optionValue = e.detail.value
     const topicId = app.globalData.currentTopic
     const openId = app.globalData.openid
 

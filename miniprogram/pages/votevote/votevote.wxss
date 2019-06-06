@@ -35,9 +35,18 @@ page {
 }
 
 .section-text {
-  width: 100rpx;
+  width: 100%;
   margin-left: 20rpx;
   margin-right: 20rpx;
   line-height: 52px;
   font-size: 34rpx;
+}
+
+.section-radio {
+  width: 100%;
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+  line-height: 52px;
+  font-size: 35rpx;
+  color: #007aff;
 }
